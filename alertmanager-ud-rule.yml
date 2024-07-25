@@ -1,11 +1,10 @@
-alertmanager-ud-rule.yml
 ---
 
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: hackathon-alert
-  namespace: eda-hackathon-0001
+  namespace: elijah-rules-2024
 spec:
   groups:
   - name: hackathon-rule
@@ -17,16 +16,14 @@ spec:
         severity: warning
       annotations:
         message: This is an example alert for the hackathon.
-
-
-hackathon-alert-routing.yml
+...
 ---
 
 apiVersion: monitoring.coreos.com/v1beta1
 kind: AlertmanagerConfig
 metadata:
   name: example-routing
-  namespace: eda-hackathon-0001
+  namespace: elijah-rules-2024
 spec:
   route:
     receiver: receiver0001
@@ -36,15 +33,14 @@ spec:
     webhookConfigs:
     - url: https://example.org/post
 
-
-hackathon-job.yaml
+...
 ---
 
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: prometheus-hackathon-app
-  namespace: eda-hackathon-0001
+  namespace: elijah-rules-2024
 spec:
   parallelism: 1
   completions: 1
